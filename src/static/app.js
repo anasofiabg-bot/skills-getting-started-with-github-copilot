@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="participants-section">
               <strong>Participants:</strong>
               <ul class="participants-list">
-                ${details.participants.map(email => `<li>${email}</li>`).join("")}
+                ${details.participants.map(email => `<li>${email} <span class="delete-icon" title="Remove participant" data-activity="${name}" data-email="${email}">&#128465;</span></li>`).join("")}
               </ul>
             </div>
           `;
@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         messageDiv.textContent = result.message;
         messageDiv.className = "success";
         signupForm.reset();
+        fetchActivities(); // refresca la lista
       } else {
         messageDiv.textContent = result.detail || "An error occurred";
         messageDiv.className = "error";
@@ -102,6 +103,26 @@ document.addEventListener("DOMContentLoaded", () => {
       messageDiv.classList.remove("hidden");
       console.error("Error signing up:", error);
     }
+  });
+
+  document.querySelectorAll('.delete-icon').forEach(icon => {
+    icon.addEventListener('click', async (e) => {
+      const activity = icon.getAttribute('data-activity');
+      const email = icon.getAttribute('data-email');
+      try {
+        const response = await fetch(`/activities/${encodeURIComponent(activity)}/signup?email=${encodeURIComponent(email)}`, {
+          method: "DELETE"
+        });
+        if (response.ok) {
+          fetchActivities(); // Actualiza la lista
+        } else {
+          alert("Could not remove participant. Please try again.");
+        }
+      } catch (err) {
+        alert("An error occurred while removing the participant. Please try again later.");
+        console.error("Delete error:", err);
+      }
+    });
   });
 
   // Initialize app

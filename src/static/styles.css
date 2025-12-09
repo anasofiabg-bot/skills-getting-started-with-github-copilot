@@ -1,3 +1,42 @@
+.participants-list {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.participant-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: #f7fbff;
+  box-sizing: border-box;
+}
+
+.participant-email {
+  flex: 1;
+  word-break: break-all;
+}
+
+.delete-icon {
+  cursor: pointer;
+  color: #1976d2;
+  font-size: 1.2em;
+  margin-left: 10px;
+  transition: color 0.2s;
+  padding: 2px 6px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #eee;
+  display: inline-block;
+}
+.delete-icon:hover {
+  color: #0d47a1;
+  background: #e3f2fd;
+  border-color: #1976d2;
+}
 // ...existing code...
       // Populate activities list
       Object.entries(activities).forEach(([name, details]) => {
