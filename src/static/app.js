@@ -1,7 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
   const activitiesList = document.getElementById("activities-list");
   const activitySelect = document.getElementById("activity");
-  const signupForm = document.getElementById("signup-form");
+  const sig  // ...existing code...
+  .participants-section {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #eef6fb;
+    border-radius: 4px;
+    border: 1px solid #cfd8dc;
+  }
+  
+  .participants-list {
+    margin-top: 5px;
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+  
+  .no-participants {
+    color: #78909c;
+    font-style: italic;
+    margin-top: 5px;
+  }
+  // ...existing code...nupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
 
   // Function to fetch activities from API
